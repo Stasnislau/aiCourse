@@ -6,3 +6,4 @@ assignment6/
 assignment7/
 .venv/
 *data/
+*pycache/
