@@ -118,7 +118,9 @@ class KNN:
             # nearest training samples
             # Get the distances between the i-th test example and all training examples
             
-            # pred[i] = 
+            initial_prediction = self.train_y[np.argsort(dists[i])[:self.k]]
+            max_count = np.argmax(np.bincount(initial_prediction))
+            pred[i] = self.train_y[max_count]
         return pred
 
     def predict_labels_multiclass(self, dists):
@@ -139,5 +141,8 @@ class KNN:
         for i in range(num_test):
             # TODO: Implement choosing best class based on k
             # nearest training samples
-            pass
+            # Get the distances between the i-th test example and all training examples
+            initial_prediction = self.train_y[np.argsort(dists[i])[:self.k]]
+            max_count = np.argmax(np.bincount(initial_prediction))
+            pred[i] = self.train_y[max_count]
         return pred
