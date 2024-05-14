@@ -114,7 +114,11 @@ def linear_softmax(X, W, target_index):
 
     # TODO implement prediction and gradient over W
     # Your final implementation shouldn't have any loops
-    raise Exception("Not implemented!")
+        
+    loss, _ = softmax_with_cross_entropy(predictions, target_index)
+    
+    dW = softmax(predictions)
+    
 
     return loss, dW
 
