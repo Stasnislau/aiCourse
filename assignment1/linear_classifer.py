@@ -15,12 +15,7 @@ def softmax(predictions):
     """
     # TODO implement softmax
     # Your final implementation shouldn't have any loops
-    
-    # pred -= pred.max()
-    # f = lambda x: np.e**x
-    # pred = f(pred)
-    # result = pred / pred.sum()
-    # return result
+
     pred = predictions.copy()
     pred -= np.max(predictions, axis=1, keepdims=True)
     exps = np.exp(pred)
@@ -91,8 +86,10 @@ def l2_regularization(W, reg_strength):
 
     # TODO: implement l2 regularization and gradient
     # Your final implementation shouldn't have any loops
-    raise Exception("Not implemented!")
-
+    loss = reg_strength * np.sqrt(np.sum(W**2))
+    
+    grad = 2 * reg_strength * W
+    
     return loss, grad
 
 
@@ -115,10 +112,9 @@ def linear_softmax(X, W, target_index):
     # TODO implement prediction and gradient over W
     # Your final implementation shouldn't have any loops
         
-    loss, _ = softmax_with_cross_entropy(predictions, target_index)
+    loss, dpred = softmax_with_cross_entropy(predictions, target_index)
     
-    dW = softmax(predictions)
-    
+    dW = np.dot(X.T, dpred)
 
     return loss, dW
 
