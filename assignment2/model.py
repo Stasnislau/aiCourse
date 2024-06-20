@@ -18,7 +18,13 @@ class TwoLayerNet:
         """
         self.reg = reg
         # TODO Create necessary layers
-        raise Exception("Not implemented!")
+        n_hidden = hidden_layer_size
+        self.layers = [
+            FullyConnectedLayer(n_input, n_hidden),
+            ReLULayer(),
+            FullyConnectedLayer(n_hidden, n_output)
+        ]
+        
 
     def compute_loss_and_gradients(self, X, y):
         """
